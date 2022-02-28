@@ -1,0 +1,22 @@
+# IDEs
+.idea/
+.vscode/
+
+# python venv
+venv/
+
+# python
+*.pyc
+__pycache__/
+
+instance/
+
+# test y coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# build tools
+dist/
+build/
+*.egg-info/
