@@ -6,7 +6,7 @@ class Services:
     @staticmethod
     def get_items():
         get_db()
-        return list(item for item in g.db.find({}, {"_id": False}))
+        return list(g.db.find({}, {"_id": False}))
 
     @staticmethod
     def get_item(title):
