@@ -22,3 +22,7 @@ build/
 *.egg-info/
 .tox
 MANIFEST
+
+# other
+db.json
+settings.py
