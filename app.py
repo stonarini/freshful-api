@@ -1,8 +1,7 @@
-from flask import Flask
+from flask import Flask, g
 from flask_restful import Api
-from controller.Book import Book
-from controller.Books import Books
-from controller.Home import Home
+from resources import Home, Book, Books
+
 
 app = Flask(__name__)
 
@@ -14,4 +13,4 @@ api.add_resource(Books, "/books")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
