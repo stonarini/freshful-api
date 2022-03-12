@@ -8,7 +8,14 @@ class Services:
 
     @staticmethod
     def get_item(item):
-        return list(DB.get_one(item))
+        if not item.get_sell_in():
+            return list(DB.get_by_name(item.get_name()))
+        else:
+            return DB.get_one(item)
+
+    @staticmethod
+    def create_item(item):
+        DB.create_one(item)
 
     @staticmethod
     def update_item(item):
