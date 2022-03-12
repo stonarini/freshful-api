@@ -3,5 +3,5 @@ from services import Services
 
 
 class Item(ItemResource):
-    def get(self, title):
-        return Services.get_item(title)
+    def get(self, item):
+        return Services.get_item(item)
