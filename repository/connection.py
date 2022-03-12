@@ -11,5 +11,5 @@ def get_db():
         print("Connection failed")
     else:
         database = client["bunyols-library"]
-        collection = database["catalog"]
+        collection = database["items"]
         return collection
