@@ -1,7 +1,7 @@
-from flask_restful import Resource
+from resources.ItemResource import ItemResource
 from services import Services
 
 
-class Book(Resource):
+class Book(ItemResource):
     def get(self, title):
         return Services.get_item(title)
