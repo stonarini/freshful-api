@@ -1,16 +1,19 @@
-from pymongo import MongoClient
-from pymongo.errors import ConfigurationError
-from flask import g
-from .settings import URI
+from .connection import get_db
 
 
-def get_db():
+class DB:
+    @staticmethod
+    def get_all():
+        pass
 
-    try:
-        client = MongoClient(URI)
-    except ConfigurationError:
-        print("Connection failed")
-    else:
-        database = client["bunyols-library"]
-        collection = database["catalog"]
-        g.db = collection
+    @staticmethod
+    def get_one():
+        pass
+
+    @staticmethod
+    def update_one():
+        pass
+
+    @staticmethod
+    def delete_one():
+        pass
