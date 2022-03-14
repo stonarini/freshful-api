@@ -32,3 +32,6 @@ class NormalItem(Item, Updateable):
         else:
             self.modify_quality(-2)
         self.set_sell_in()
+
+    def __len__(self):
+        return len(list(filter(lambda a: a[1], self.__dict__.items())))
