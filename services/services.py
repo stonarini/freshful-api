@@ -8,8 +8,8 @@ class Services:
 
     @staticmethod
     def get_item(item):
-        if not item.get_sell_in():
-            return list(DB.get_by_name(item.get_name()))
+        if len(item) < 3:
+            return list(DB.filter_item(item))
         else:
             return DB.get_one(item)
 
