@@ -19,8 +19,8 @@ class Services:
 
     @staticmethod
     def update_item(item):
-        return list(DB.update_one(item))
+        return DB.update_one(item)
 
     @staticmethod
     def delete_item(item):
-        return list(DB.delete_one(item))
+        return DB.delete_one(item)
