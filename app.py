@@ -9,9 +9,9 @@ def app_setup():
     api = Api(app, catch_all_404s=True)
 
     api.add_resource(Home, "/")
-    api.add_resource(Item, "/item")
+    api.add_resource(Item, "/items/<name>")
     api.add_resource(Items, "/items")
-    
+
     return app
 
 
