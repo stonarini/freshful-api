@@ -9,5 +9,8 @@ class Item(ItemResource):
     def put(self, item):
         return Services.create_item(item)
 
+    def patch(self, item):
+        return Services.update_item(item)
+
     def delete(self, item):
         return Services.delete_item(item)
