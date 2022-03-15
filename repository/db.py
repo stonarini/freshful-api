@@ -15,13 +15,15 @@ class DB:
     @staticmethod
     def filter_item(item):
         db = get_db()
-        item_dict = dict(filter(lambda a: a[1], item.__dict__.items()))
+        item_dict = dict(filter(lambda a: a[1] != None, item.__dict__.items()))
         return db.find(item_dict, {"_id": False})
 
     @staticmethod
     def create_one(item):
         db = get_db()
-        db.insert_one(item.__dict__)
+        db.insert_one(
+            dict(map(lambda a: a if a[1] else (a[0], 0), item.__dict__.items()))
+        )
 
     @staticmethod
     def update_one():
