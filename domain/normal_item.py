@@ -34,4 +34,4 @@ class NormalItem(Item, Updateable):
         self.set_sell_in()
 
     def __len__(self):
-        return len(list(filter(lambda a: a[1], self.__dict__.items())))
+        return len({k: v for k, v in self.__dict__.items() if v is not None})
