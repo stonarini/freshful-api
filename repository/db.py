@@ -30,5 +30,8 @@ class DB:
         pass
 
     @staticmethod
-    def delete_one():
-        pass
+    def delete_one(item):
+        db = get_db()
+        db.delete_one(
+            dict(map(lambda a: a if a[1] else (a[0], 0), item.__dict__.items()))
+        )
