@@ -24,5 +24,4 @@ build/
 MANIFEST
 
 # other
-db.json
 settings.py
