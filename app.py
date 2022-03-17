@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_restful import Api
+from repository.db import init_app
 from resources import Home, Item, Items
 
 
-def app_setup():
+def create_app():
     app = Flask(__name__)
 
     api = Api(app, catch_all_404s=True)
@@ -12,9 +13,11 @@ def app_setup():
     api.add_resource(Item, "/items/<name>")
     api.add_resource(Items, "/items")
 
+    init_app(app)
+
     return app
 
 
 if __name__ == "__main__":
-    app = app_setup()
+    app = create_app()
     app.run()
