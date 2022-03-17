@@ -1,35 +1,64 @@
-from .connection import get_db
+import json
+import click
+from flask import g
+from flask.cli import with_appcontext
+from pymongo import MongoClient
+from pymongo.errors import ConfigurationError
+from .settings import USER, PASSWORD, DB_URI
 
 
-class DB:
-    @staticmethod
-    def get_all():
-        db = get_db()
-        return db.find({}, {"_id": False})
+def get_db(name):
+    if "db" not in g:
+        URI = f"mongodb+srv://{USER}:{PASSWORD}@{DB_URI}/{name}?retryWrites=true&w=majority"
 
-    @staticmethod
-    def get_one(item):
-        db = get_db()
-        return db.find_one(item.__dict__, {"_id": False})
+        try:
+            client = MongoClient(URI)
+        except ConfigurationError:
+            print("Connection failed")
+        else:
+            g.connection = client
+            g.db = client.get_default_database()
 
-    @staticmethod
-    def filter_item(item):
-        db = get_db()
-        return db.find(
-            {k: v for k, v in item.__dict__.items() if v is not None}, {"_id": False}
-        )
+    return g.db
 
-    @staticmethod
-    def create_one(item):
-        db = get_db()
-        db.insert_one({k: v if v is not None else 0 for k, v in item.__dict__.items()})
 
-    @staticmethod
-    def update_one(item):
-        db = get_db()
-        db.update_one({"name": item.get_name()}, {"$set": item.__dict__})
+def close_db(e=None):
+    g.pop("db", None)
+    connection = g.pop("connection", None)
 
-    @staticmethod
-    def delete_one(item):
-        db = get_db()
-        db.delete_one({k: v for k, v in item.__dict__.items() if v is not None})
+    if connection is not None:
+        connection.close()
+
+
+def init_db(name):
+    db = get_db(name)
+    db.items.drop()
+    with open("repository/test_db.json") as f:
+        db.items.insert_many(json.load(f))
+
+
+def drop_db(name):
+    db = get_db(name)
+    db.command("dropDatabase")
+
+
+@click.command("init-db")
+@click.option("--name", default="GildedRose", help="Name of the database")
+@with_appcontext
+def init_db_command(name):
+    init_db(name)
+    click.echo(f"Initialized the {name} database.")
+
+
+@click.command("drop-db")
+@click.option("--name", default="GildedRose", help="Name of the database")
+@with_appcontext
+def drop_db_command(name):
+    drop_db(name)
+    click.echo(f"Deleted the {name} database.")
+
+
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
+    app.cli.add_command(drop_db_command)
