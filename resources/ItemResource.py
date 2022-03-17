@@ -2,6 +2,7 @@ from functools import wraps
 from flask import request
 from flask_restful import Resource, abort
 from .schema import ItemSchema
+from repository.db import get_db
 
 
 def request_to_item(func):
@@ -16,6 +17,7 @@ def request_to_item(func):
             abort(400)
 
         item = schema.load(schema.dump(raw_item))
+        get_db("GildedRose")
         return func(item)
 
     return validate_route
