@@ -1,0 +1,42 @@
+[
+    {
+        "name": "BackstagePass",
+        "sell_in": 5,
+        "quality": 5
+    },
+    {
+        "name": "BackstagePass",
+        "sell_in": 4,
+        "quality": 5
+    },
+    {
+        "name": "AgedBrie",
+        "sell_in": 9,
+        "quality": 9
+    },
+    {
+        "name": "AgedBrie",
+        "sell_in": 3,
+        "quality": 0
+    },
+    {
+        "name": "Sulfuras",
+        "sell_in": 4,
+        "quality": 0
+    },
+    {
+        "name": "Sulfuras",
+        "sell_in": 7,
+        "quality": 0
+    },
+    {
+        "name": "AgedBrie",
+        "sell_in": 7,
+        "quality": 0
+    },
+    {
+        "name": "BackstagePass",
+        "sell_in": 7,
+        "quality": 3
+    }
+]

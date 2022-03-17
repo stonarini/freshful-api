@@ -33,7 +33,7 @@ def close_db(e=None):
 def init_db(name):
     db = get_db(name)
     db.items.drop()
-    with open("repository/test_db.json") as f:
+    with open("repository/db.json") as f:
         db.items.insert_many(json.load(f))
 
 
