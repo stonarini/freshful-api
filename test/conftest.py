@@ -15,7 +15,7 @@ def app():
     yield app
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def client(app):
     with app.app_context():
         init_db("TestGildedRose")
