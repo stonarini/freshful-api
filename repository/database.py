@@ -26,7 +26,10 @@ class DB:
 
     @staticmethod
     def update_one(item):
-        g.db.items.update_one({"name": item.get_name()}, {"$set": item.__dict__})
+        g.db.items.update_one(
+            {"name": item.get_name()},
+            {"$set": {k: v if v is not None else 0 for k, v in item.__dict__.items()}},
+        )
 
     @staticmethod
     def delete_one(item):

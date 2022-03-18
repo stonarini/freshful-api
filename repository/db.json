@@ -5,11 +5,6 @@
         "quality": 5
     },
     {
-        "name": "BackstagePass",
-        "sell_in": 4,
-        "quality": 5
-    },
-    {
         "name": "AgedBrie",
         "sell_in": 9,
         "quality": 9
@@ -38,5 +33,10 @@
         "name": "BackstagePass",
         "sell_in": 7,
         "quality": 3
+    },
+    {
+        "name": "ConjuredItem",
+        "sell_in": 3,
+        "quality": 8
     }
 ]

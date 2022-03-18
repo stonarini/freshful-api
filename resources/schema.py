@@ -10,13 +10,14 @@ class ItemSchema(Schema):
     @post_load
     def make_item(self, item_args, **kwargs):
         name = item_args["name"]
-        if name == Items.AgedBrie:
+
+        if name == Items.AgedBrie.value:
             item = AgedBrie(**item_args)
-        elif name == Items.Backstage:
+        elif name == Items.Backstage.value:
             item = Backstage(**item_args)
-        elif name == Items.ConjuredItem:
+        elif name == Items.ConjuredItem.value:
             item = ConjuredItem(**item_args)
-        elif name == Items.Sulfuras:
+        elif name == Items.Sulfuras.value:
             item = Sulfuras(**item_args)
         else:
             item = NormalItem(**item_args)
