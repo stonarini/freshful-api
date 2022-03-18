@@ -11,3 +11,11 @@ def test_get_all(client):
     assert data[0]["name"] is not None
     assert data[0]["sell_in"] >= 0
     assert data[0]["quality"] >= 0
+
+
+def test_get_home(client):
+    res = client.get("/")
+    data = json.loads(res.data)
+    assert res.status_code == 200
+    assert res.content_type == "application/json"
+    assert data == {"Hello": "There!"}
